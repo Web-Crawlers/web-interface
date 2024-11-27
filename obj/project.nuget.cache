@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2b8sRivcgCviPRa4txQ/aV3Q4K3LX9m2Rx0lQ0UHqv44icd/4xw+HYRV7dJv968Wg580L6l0TTVm35YLJYuulw==",
+  "success": true,
+  "projectFilePath": "D:\\Jonathan\\Dokument\\GitHub\\web-interface\\WebCrawlerInterface.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jonat\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}
