@@ -1,15 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using WebCrawlerInterface.Models;
+@{
+    ViewData["Title"] = "Web Articles";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>
-        Response:<br />
-        @foreach(var r in (List<string>)ViewData["response"])
-        {
-            @r <br />
-        }
-    </p>
+    <h1 class="display-4">Web Articles</h1>
+    @foreach (var r in (List<Articles>)ViewData["data"])
+    {
+        <p style="text-align: left;">
+            <span style="font-weight: bold">@r.url</span><br />
+            @r.content
+        </p>
+    }
 </div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,21 +24,21 @@ namespace WebCrawlerInterface.Controllers
         public IActionResult Index()
         {
             var responses = new List<string>();
+            IMongoCollection<Articles> _articlesCollection;
+
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.96.0.101:27017/content");
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+                var mongoClient = new MongoClient("mongodb://10.96.0.101:27017");
 
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    responses.Add(reader.ReadToEnd());
-                }
+                var mongoDatabase = mongoClient.GetDatabase("mydb");
+
+                _articlesCollection = mongoDatabase.GetCollection<Articles>("Articles");
+
+                ViewData["data"] = _articlesCollection.Find(_ => true).ToList();
             }
             catch (Exception e)
             {
-                responses.Add($"No bueno {e.Message}");
+                responses.Add(e.Message);
             }
 
             ViewData["response"] = responses;
